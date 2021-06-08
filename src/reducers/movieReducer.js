@@ -6,11 +6,23 @@ const initialState = {
     appTitle: "IMDB Movie Database"
 }
 
-const reducer = (state, action) => {
-    switch(action.type) {
+const reducer = (state = initialState, action) => {
+    switch (action.type) {
         case DELETE_MOVIE:
             return {
-                movies: state.movies.filter(item=>(action.payload !== item.id))
+                ...state,
+                movies: state.movies.filter(item => (action.payload !== item.id))
+            }
+        case ADD_MOVIE:
+            // we need an id value for the new movie
+            // find the largest current movie id value, and increase it by 1
+            const ids = state.movies.map(m => m.id);
+            const max = Math.max(...ids);
+            const newId = max + 1;
+            const newMovie = { ...action.payload, id: newId };
+            return {
+                ...state,
+                movies: [...state.movies, newMovie],
             }
         default:
             return state;
