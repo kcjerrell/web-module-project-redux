@@ -94,7 +94,7 @@ In this project, you take a fairly complex application used to search a movie da
 
 ### Stretch goals
 
-- It makes sense to not allow the user to favorite an item if favorites is not displayed. Add in means for the favorite button to ONLY display if displayFavorite is true.
-- Right now, you can favorite the same movie multiple times. Change the addFavorite action to only add in a new favorite if it doesn't already exist.
-- Add in the ability to remove a movie from the favorites list if that movie is removed from our main movie list.
-- Style to your heart's content ❤️
+- [x] It makes sense to not allow the user to favorite an item if favorites is not displayed. Add in means for the favorite button to ONLY display if displayFavorite is true.
+- [x] Right now, you can favorite the same movie multiple times. Change the addFavorite action to only add in a new favorite if it doesn't already exist.
+- [x] Add in the ability to remove a movie from the favorites list if that movie is removed from our main movie list.
+- [ ] Style to your heart's content ❤️

@@ -4,12 +4,21 @@ import { useParams, useHistory } from 'react-router-dom';
 import { deleteMovie } from '../actions/movieActions';
 import { addFavorite, removeFavorite } from '../actions/favoritesActions';
 
+const unknownMovie = {
+    id: -1,
+    title: "",
+    director: "",
+    metascore: null,
+    genre: "",
+    description: "Movie could not be found! Perhaps it has been removed? [BEWARE THE CENSOR]"
+}
+
 const Movie = (props) => {
     const { id } = useParams();
     const { push } = useHistory();
 
     const { movies, displayFavorites } = props;
-    const movie = movies.find(movie => movie.id === Number(id));
+    const movie = movies.find(movie => movie.id === Number(id)) ?? unknownMovie;
 
     const handleDeleteClick = e => {
         props.removeFavorite(movie.id);
@@ -49,16 +58,18 @@ const Movie = (props) => {
                             </div>
                         </section>
 
-                        <section>
-                            {displayFavorites &&
-                                <span className="">
-                                    <input type="button" className="m-2 btn btn-dark" value="Add Favorite" onClick={handleAddFavoriteClick} />
+                        {movie.id >= 0 &&
+                            <section>
+                                {displayFavorites &&
+                                    <span className="">
+                                        <input type="button" className="m-2 btn btn-dark" value="Add Favorite" onClick={handleAddFavoriteClick} />
+                                    </span>
+                                }
+                                <span className="delete">
+                                    <input type="button" className="m-2 btn btn-danger" value="Delete" onClick={handleDeleteClick} />
                                 </span>
-                            }
-                            <span className="delete">
-                                <input type="button" className="m-2 btn btn-danger" value="Delete" onClick={handleDeleteClick} />
-                            </span>
-                        </section>
+                            </section>
+                        }
                     </div>
                 </div>
             </div>
