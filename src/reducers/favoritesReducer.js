@@ -14,7 +14,10 @@ const reducer = (state = initialState, action) => {
 			};
 
 		case ADD_FAVORITE:
-			console.log('wowoo')
+			// If a movie with the same id is already on our list of favorites, we're not gonna do anything
+			if (state.favorites.some(f => f.id === action.payload.id))
+				return state;
+
 			return {
 				...state,
 				favorites: [...state.favorites, action.payload],
